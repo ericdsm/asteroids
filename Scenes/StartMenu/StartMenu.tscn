@@ -28,7 +28,7 @@ margin_bottom = 557.067
 text = "Controls:
 Player 1:
 A W D = Movement
-Ctrl = Fire
+Shift = Fire
 
 Player 2:
 J I L = Movement

@@ -106,11 +106,11 @@ func showVictoryScreen():
 	var victoryScene = load("res://Scenes/Victory/Victory.tscn").instance()
 	if(players > 1):
 		if(winner != 0):
-			victoryScene.get_node("RichTextLabel").text = "The winner is player " + str(winner)
+			victoryScene.get_node("RichTextLabel").text = "The winner is player " + str(winner) + "\nYou destroyed " + str(asteroidsDestroyed) + " asteroids"
 		else:
-			victoryScene.get_node("RichTextLabel").text = "Draw game!"
+			victoryScene.get_node("RichTextLabel").text = "Draw game!" + "\nYou destroyed " + str(asteroidsDestroyed) + " asteroids"
 	else:
-		victoryScene.get_node("RichTextLabel").text = "Game Over. You destroyed " + str(asteroidsDestroyed) + " asteroids"
+		victoryScene.get_node("RichTextLabel").text = "Game Over.\nYou destroyed " + str(asteroidsDestroyed) + " asteroids"
 	root.add_child(victoryScene)
 	
 	var currentScene = self
