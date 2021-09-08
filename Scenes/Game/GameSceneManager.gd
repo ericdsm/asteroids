@@ -67,6 +67,9 @@ func _process(delta):
 		spawnAsteroid()
 		spawnCounter += 1
 		currentSpawnDelay = (2 + 10) / (1 + spawnCounter*0.1)
+		
+	if((playersAlive <= 1 && players > 1) || (playersAlive <= 0 && players == 1)):
+		showVictoryScreen()
 
 func spawnAsteroid():
 		var asteroid = Asteroid.instance()
@@ -88,12 +91,9 @@ func _on_player_freed(playerIndex):
 	print("PlayerFreed" + str(playerIndex))
 	playerAlive[playerIndex-1] = false
 	playersAlive -= 1
-	
-	if(playersAlive == 1 || (playersAlive == 0 && players == 1)):
-		showVictoryScreen()
 
 func showVictoryScreen():
-	var winner
+	var winner = 0
 	if(playerAlive[0]):
 		winner = 1
 	elif(playerAlive[1]):
@@ -105,7 +105,10 @@ func showVictoryScreen():
 	
 	var victoryScene = load("res://Scenes/Victory/Victory.tscn").instance()
 	if(players > 1):
-		victoryScene.get_node("RichTextLabel").text = "The winner is player " + str(winner)
+		if(winner != 0):
+			victoryScene.get_node("RichTextLabel").text = "The winner is player " + str(winner)
+		else:
+			victoryScene.get_node("RichTextLabel").text = "Draw game!"
 	else:
 		victoryScene.get_node("RichTextLabel").text = "Game Over. You destroyed " + str(asteroidsDestroyed) + " asteroids"
 	root.add_child(victoryScene)
