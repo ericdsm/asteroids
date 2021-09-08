@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/StartMenu/StartMenu.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 459.82
+margin_top = 152.625
+margin_right = 597.82
+margin_bottom = 170.625
+text = "Multiplayer Asteroids"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = 453.629
+margin_top = 377.067
+margin_right = 606.629
+margin_bottom = 557.067
+text = "Controls:
+Player 1:
+A W D = Movement
+Ctrl = Fire
+
+Player 2:
+J I L = Movement
+
+Player 3:
+Arrows = Movement
+Enter = Fire"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_1Player" type="Button" parent="."]
+margin_left = 289.559
+margin_top = 314.093
+margin_right = 352.559
+margin_bottom = 334.093
+text = "1 Player"
+
+[node name="Button_2Player" type="Button" parent="."]
+margin_left = 485.202
+margin_top = 315.867
+margin_right = 555.202
+margin_bottom = 335.867
+text = "2 Players"
+
+[node name="Button_3Player" type="Button" parent="."]
+margin_left = 680.222
+margin_top = 316.595
+margin_right = 750.222
+margin_bottom = 336.595
+text = "3 Players"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -4,6 +4,7 @@ signal freed
 
 var direction : float = 0.0
 var velocity: float = 400.0
+var origin = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,8 @@ func _ready():
 
 func _on_area_entered(body):
 	if(body.is_in_group("Asteroids")):
+		destroy()
+	elif(body.is_in_group("Players") && body != origin):
 		destroy()
 
 

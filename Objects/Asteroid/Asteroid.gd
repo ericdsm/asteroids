@@ -1,5 +1,7 @@
 extends "res://Objects/Object.gd"
 
+signal freed
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -49,6 +51,9 @@ func fragmentate():
 		fragment1.velocity *= 1.1
 		fragment2.velocity *= 1.1
 		
+		fragment1.connect("freed", get_parent(), "_on_asteroid_freed")
+		fragment2.connect("freed", get_parent(), "_on_asteroid_freed")
+		
 		queue_free()
 		
 		print("Asteroid fragmented")
@@ -68,3 +73,7 @@ func move(delta):
 		#collision = move_and_collide(collision.remainder)
 	
 	wrap_position()
+
+func _notification(what):
+	if what == NOTIFICATION_PREDELETE:
+		emit_signal("freed")
