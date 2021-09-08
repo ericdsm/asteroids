@@ -32,6 +32,13 @@ func setPlayer(playerNumber):
 	action_turn_right = "player" + String(playerNumber) + "_turn_right"
 	action_thruster = "player" + String(playerNumber) + "_thruster"
 	action_fire = "player" + String(playerNumber) + "_fire"
+	
+	if(playerNumber == 1):
+		$Sprite.modulate = Color(1, 0.5, 0.5)
+	elif(playerNumber == 2):
+		$Sprite.modulate = Color(0.5, 1, 0.5)
+	else:
+		$Sprite.modulate = Color(0.5, 0.5, 1)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -53,7 +60,10 @@ func _process(delta):
 		direction = direction + turnSpeed * delta
 	
 	if Input.is_action_pressed(action_thruster):
+		$Thruster.visible = !$Thruster.visible
 		velocity = velocity + Vector2(sin(direction), -cos(direction)) * thurstForce * delta
+	else:
+		$Thruster.visible = false
 
 	if(currentFiringCooldown <= 0):
 		if Input.is_action_pressed(action_fire):
@@ -90,6 +100,7 @@ func fire(delta):
 		projectile.position = position
 		projectile.direction = direction
 		projectile.origin = self
+		projectile.rotation = direction
 		
 		projectile.connect("freed", self, "_on_projectile_freed")
 		
